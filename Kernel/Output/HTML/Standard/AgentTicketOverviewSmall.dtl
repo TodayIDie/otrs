@@ -94,6 +94,11 @@
                     <th class="Owner $QData{"CSS"}">
                         <a name="OverviewControl" href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Owner;OrderBy=$LQData{"OrderBy"}">$Text{"Owner"}</a>
                     </th>
+
+ <th class="Responsible $QData{"CSS"}">
+                        <a name="OverviewControl" href="$Env{"Baselink"}Action=$Env{"Action"};$Data{"LinkSort"};SortBy=Responsible;OrderBy=$LQData{"OrderBy"}">$Text{"Responsible"}</a>
+                    </th>
+
 <!-- dtl:block:OverviewNavBarPageOwner -->
 <!-- dtl:block:OverviewNavBarPageCustomerID -->
                     <th class="CustomerID Last $QData{"CSS"}">
@@ -170,8 +175,11 @@
                     <td>
                         <div title="$QData{"From"}">$QData{"FromRealname","30"}</div>
 <!-- dtl:block:RecordLastCustomerSubject -->
-                        <div title="$QData{"Subject"}">$QData{"Subject","30"}</div>
+                      <!-- <div title="$QData{"Subject"}">$QData{"Subject","100"}</div> -->
+                        <div title="$QData{"Title"}">$QData{"Title","100"}</div>
+
 <!-- dtl:block:RecordLastCustomerSubject -->
+
 <!-- dtl:block:RecordTicketTitle -->
                         <div title="$QData{"Title"}">$QData{"Title","30"}</div>
 <!-- dtl:block:RecordTicketTitle -->
@@ -188,11 +196,17 @@
                     <td>
                         <div title="$QData{"UserFirstname"} $QData{"UserLastname"} ($QData{"Owner"})">$QData{"UserFirstname","15"} $QData{"UserLastname","15"}</div>
                     </td>
+ <td>
+                        $QData{"Responsible"}
+                    </td>
+
+
+
                     <td>
                         <a href="$Env{"Baselink"}Action=AgentTicketCustomer;TicketID=$LQData{"TicketID"}" class="AsPopup">
-                            <span title="$QData{"CustomerID"}">$QData{"CustomerID","15"}</span>
+                            <span title="$QData{"CustomerID"}">$QData{"CustomerID","30"}</span>
                         </a>
-                        <div title="$QData{"CustomerName"}">$QData{"CustomerName","15"}</div>
+                        <div title="$QData{"CustomerName"}">$QData{"CustomerName","30"}</div>
                     </td>
 <!-- dtl:block:RecordDynamicField -->
                     <td>

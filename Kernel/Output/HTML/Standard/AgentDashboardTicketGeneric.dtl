@@ -108,6 +108,12 @@
                 <div title="$QData{"Title"}">$QData{"Title","70"}</div>
             </td>
             <td>$QData{"Time"}</td>
+<td>$QData{"Queue"}</td>
+<td>$QData{"State"}</td>
+<td>$QData{"CustomerUserID"}</td>
+<td>$QData{"Owner"}</td>
+<td>$QData{"Responsible"}</td>
+
         </tr>
 <!-- dtl:block:ContentLargeTicketGenericRow -->
 <!-- dtl:block:ContentLargeTicketGenericNone -->
