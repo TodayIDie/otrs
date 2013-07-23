@@ -1,0 +1,448 @@
+# --
+# AdminSupport.dtl - provides HTML form for AdminSupport
+# Copyright (C) 2001-2012 OTRS AG, http://otrs.org/
+# --
+# $Id: AdminSupport.dtl,v 1.34 2012/09/04 04:06:12 cg Exp $
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+# ---
+# - Supportmodule overview page
+# ---
+
+<!-- dtl:block:Overview -->
+<div class="MainBox AdminSupport ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1>$Text{"Overview"}: $Text{"Support Assessment"}</h1>
+
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class='Content'>
+                <ul class="ActionList">
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=Confidential" class="CallForAction"><span>$Text{"Start support"}</span></a>
+                    </li>
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=BenchmarkSQLInit" class="CallForAction"><span>$Text{"SQL benchmark"}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Note"}</h2>
+            </div>
+            <div class='Content'>
+                <p>
+                    $Text{"For quick help please submit your system information and create a support ticket at the vendor's site."}
+                    <br/>
+                    $Text{"For more info please check"} <a href="http://otrs.com/" target="_blank">http://otrs.com/</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ContentColumn">
+<!-- dtl:block:OverviewModule -->
+        <div class="WidgetSimple">
+            <div class="Header">
+                <div class="WidgetAction Toggle">
+                    <a title="Toggle this widget" href="#"></a>
+                </div>
+                <h2>$Text{"$Data{"Module"}"}</h2>
+            </div>
+            <div class="Content">
+<!-- dtl:block:OverviewModuleRow -->
+                <ul>
+                    <li class="CheckResult CheckResult$QData{"Check"}">
+                        <h3>
+                            <span title="$QData{"Check"}" class="Flag Small">
+                                <span>$QData{"Check"}</span>
+                            </span>
+                            $QData{"Description"}
+                        </h3>
+                        <p class="SpacingTopSmall">$QData{"Comment"}</p>
+                    </li>
+                </ul>
+<!-- dtl:block:OverviewModuleRow -->
+<!-- dtl:block:OverviewModuleRowTextArea -->
+                <ul>
+                    <li class="CheckResult CheckResult$QData{"Check"}">
+                        <h3>
+                            <span title="$QData{"Check"}" class="Flag Small">
+                                <span>$QData{"Check"}</span>
+                            </span>
+                            $QData{"Description"}
+                        </h3>
+                        <p class="SpacingTopSmall">$QData{"Comment"}</p>
+                        <div class="Spacing">
+                            <textarea class="W100pc" rows="7" cols="" readonly="readonly">$QData{"ContentString"}</textarea>
+                        </div>
+                    </li>
+                </ul>
+<!-- dtl:block:OverviewModuleRowTextArea -->
+
+
+
+<!-- dtl:block:OverviewModuleRowTableDataSimple -->
+                <ul>
+                    <li class="CheckResult CheckResult$QData{"Check"}">
+                        <h3>
+                            <span title="$QData{"Check"}" class="Flag Small">
+                                <span>$QData{"Check"}</span>
+                            </span>
+                            $QData{"Description"}
+                        </h3>
+                        <p class="SpacingTopSmall">$QData{"Comment"}</p>
+                        <div class="Spacing">
+                            <table class="DataTable">
+                                <thead>
+                                    <tr>
+                                        <th class="Center">Item</th>
+                                        <th class="Center">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+<!-- dtl:block:OverviewModuleTableRow -->
+                                    <tr>
+                                        <td><strong>$QData{"ItemKey"}</strong></td>
+                                        <td>$QData{"Value"}</td>
+                                    </tr>
+<!-- dtl:block:OverviewModuleTableRow -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+<!-- dtl:block:OverviewModuleRowTableDataSimple -->
+
+
+
+
+            </div>
+        </div>
+<!-- dtl:block:OverviewModule -->
+    </div>
+</div>
+<!-- dtl:block:Overview -->
+
+
+# ---
+# - Supportmodule confidential page
+# ---
+
+<!-- dtl:block:Confidential -->
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1>$Text{"Admin Support Info"}</h1>
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class="Content">
+                <ul class="ActionList">
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"}" class="CallForAction"><span>$Text{"Go to overview"}</span></a>
+                    </li>
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"};Subaction=BenchmarkSQLInit" class="CallForAction"><span>$Text{"SQL benchmark"}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="ContentColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Confidential information"}</h2>
+            </div>
+            <div class="Content Center">
+
+$Include{"AdminSupportLicenseText"}
+
+                <div class="Content CenterBox W50pc">
+                    <form action="$Env{"CGIHandle"}" method="post" class="Right SpacingTopSmall">
+                        <input type="hidden" name="Action" value="$Env{"Action"}"/>
+                        <input type="hidden" name="Subaction" value="SenderInformation"/>
+                        <button class="Primary" type="submit" value="$Text{"Accept license"}">$Text{"Accept license"}</button>
+                    </form>
+                    <form action="$Env{"CGIHandle"}" method="post" class="Right SpacingTopSmall">
+                        <input type="hidden" name="Action" value="$Env{"Action"}"/>
+                        <button type="submit" value="$Text{"Don't accept license"}">$Text{"Don't accept license"}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dtl:block:Confidential -->
+
+
+# ---
+# - Supportmodule sender and system information
+# ---
+
+<!-- dtl:block:SenderInformation -->
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1>$Text{"Admin Support Info"}</h1>
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class="Content">
+                <ul class="ActionList">
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"}" class="CallForAction"><span>$Text{"Go to overview"}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="ContentColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Vendor Support"}</h2>
+            </div>
+            <div class="Content WithPadding">
+                <form action="$Env{"CGIHandle"}" method="post" name="compose">
+                    <input type="hidden" name="Action" value="$Env{"Action"}"/>
+                    <input type="hidden" name="Subaction" value="Submit"/>
+<!-- dtl:block:SenderInformationHidden -->
+                    <input type="hidden" name="$QData{"Name"}" value="$QData{"Value"}"/>
+<!-- dtl:block:SenderInformationHidden -->
+                    <fieldset class="TableLike">
+                        <label for="Salutation">$Text{"Salutation"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Salutation" name="Salutation" value="$QData{"SenderSalutation"}" class="W50pc" readonly="readonly" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Name">$Text{"Name"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Name" name="Name" value="$QData{"SenderName"}" class="W50pc" readonly="readonly" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Sender">$Text{"Email"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Sender" name="Sender" value="$QData{"SenderAdress"}" class="W50pc" readonly="readonly" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Company">$Text{"Company"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Company" name="Company" value="" class="W50pc" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Street">$Text{"Street"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Street" name="Street" value="" class="W50pc" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Zip">$Text{"Zip"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Zip" name="Zip" value="" class="W50pc" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="City">$Text{"City"}:</label>
+                        <div class="Field">
+                            <input type="text" id="City" name="City" value="" class="W50pc" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="Phone">$Text{"Phone"}:</label>
+                        <div class="Field">
+                            <input type="text" id="Phone" name="Phone" value="" class="W50pc" />
+                        </div>
+                        <div class="Clear"></div>
+
+                        <label for="BugzillaID">$Text{"Bugzilla ID"}:</label>
+                        <div class="Field">
+                            <input type="text" id="BugzillaID" name="BugzillaID" value="" class="W50pc" />
+                            <p class="FieldExplanation">$Text{"If you've already added a Bugzilla report at bugs.otrs.org, please add your Bugzilla ID here."}</p>
+                        </div>
+                        <div class="Clear"></div>
+
+                        <div class="Value">
+                            <p class="">
+                                <strong>$Text{"Service Subscription"}</strong><br/>
+                                <input type="checkbox" id="SendInfo" name="SendInfo" value="1" checked="checked"/>
+                                $Text{"Please recommend me a Service Subscription to optimize my OTRS"}.
+                            </p>
+                        </div>
+                        <div class="Clear"></div>
+
+                        <div class="Field SpacingTop">
+                            <input class="button" type="submit" id="Download" name="Download" value="$Text{"Download"}"/>
+                            <input class="button" type="submit" id="Send" name="Send" value="$Text{"Send"}"/>
+                        </div>
+                        <div class="Clear"></div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dtl:js_on_document_complete -->
+        <script type="text/javascript">//<![CDATA[
+            $('#Download').bind('click', function (Event) {
+                if ($('#Sender').val() == '') {
+                    alert('$JSText{"Can't create support package, because you work currently with the system user root@localhost and your admin email address is not yet configured. Please define the admin email setting in the SysConfig module and don't use the user root@localhost for working with OTRS."}');
+                    $('#Sender').focus();
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+
+            $('#Send').bind('click', function (Event) {
+                if (!$('#SendInfo').attr('checked')) {
+                    alert('$JSText{"Please confirm the confidential information to continue."}');
+                    $('#SendInfo').focus();
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        //]]></script>
+<!-- dtl:js_on_document_complete -->
+<!-- dtl:block:SenderInformation -->
+
+
+# ---
+# - Supportmodule benchmark result
+# ---
+
+<!-- dtl:block:BenchmarkResult -->
+<div class="Header">
+    <h2>$Text{"Result"}: $Text{"$Data{"Head"}"}</h2>
+</div>
+<div class="Content">
+    <table class="DataTable">
+        <thead>
+            <tr>
+                <th class="W20pc">$Text{"Key"}</th>
+                <th class="W20pc">$Text{"Value"}</th>
+                <th class="W20pc">$Text{"Time"}</th>
+                <th>$Text{"Comment"}</th>
+            </tr>
+        </thead>
+        <tbody>
+<!-- dtl:block:BenchmarkResultRow -->
+            <tr>
+                <td>$QData{"Key"}:</td>
+                <td>$QData{"Value"}</td>
+                <td>
+                    $QData{"Time"} s $QData{"Mood"}
+                </td>
+                <td>
+<!-- dtl:block:BenchmarkResultRowFine -->
+                    $Text{"Looks fine!"}
+<!-- dtl:block:BenchmarkResultRowFine -->
+<!-- dtl:block:BenchmarkResultRowOK -->
+                    $Text{"Ok"}
+<!-- dtl:block:BenchmarkResultRowOK -->
+<!-- dtl:block:BenchmarkResultRowWrong -->
+                    $Text{"Should not take more than"} $Data{"ShouldTake"}'s $Text{"on an average system"}.
+<!-- dtl:block:BenchmarkResultRowWrong -->
+                </td>
+            </tr>
+<!-- dtl:block:BenchmarkResultRow -->
+        </tbody>
+    </table>
+</div>
+<!-- dtl:block:BenchmarkResult -->
+
+
+# ---
+# - Supportmodule Benchmark Result Init page
+# ---
+
+<!-- dtl:block:BenchmarkResultInit -->
+<div class="MainBox AdminSupport ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1>$Text{"Benchmark"}</h1>
+
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class='Content'>
+                <ul class="ActionList">
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"}" class="CallForAction"><span>$Text{"Go to overview"}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Note"}</h2>
+            </div>
+            <div class='Content'>
+                <p class="SpacingBottom">
+                    $Text{"Execute a SQL benchmark test on your database to find out how fast your database is (done on dedicated benchmark table)."}
+                </p>
+                <p class="Warning">
+                    $Text{"This should not be done on production systems!"}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ContentColumn">
+        <div class="WidgetSimple" id="SQLBenchmarkWidget">
+            <div class="Header">
+                <h2>$Text{"SQL benchmark"}</h2>
+            </div>
+            <div class="Content">
+                <input type="hidden" id="URL" name="URL" value="$Env{"Baselink"}Action=$Env{"Action"};Subaction=BenchmarkSQL"/>
+                <fieldset class="TableLike Toggle" >
+                    <label for="Mode">$Text{"Multiplier"}:</label>
+                    <div class="Field">
+                        $Data{"ModeStrg"}
+                        <p class="FieldExplanation">$Text{"Please select a multiplier and press start button."}</p>
+                    </div>
+                    <div class="Field">
+                        <button id="SendRequest" class="Primary" value="$Text{"Start"}">
+                            <span>$Text{"Start"}</span>
+                        </button>
+                    </div>
+                    <div class="Clear"></div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div id="ContentToUpdate" class="WidgetSimple Hidden"></div>
+    </div>
+</div>
+<!-- dtl:js_on_document_complete -->
+<script type="text/javascript">//<![CDATA[
+$('#SendRequest').bind('click', function (Event) {
+    $('#SQLBenchmarkWidget').addClass('Loading');
+    $('#SendRequest').attr('disabled', true);
+    var URL = $('#URL').val() + ';Mode=' + $('#Mode').val();
+    Core.AJAX.ContentUpdate($('#ContentToUpdate'), URL, function () {
+        $('#ContentToUpdate').show();
+        $('#SQLBenchmarkWidget').removeClass('Loading');
+        $('#SendRequest').attr('disabled', false);
+    });
+    return false;
+});
+//]]></script>
+<!-- dtl:js_on_document_complete -->
+
+<!-- dtl:block:BenchmarkResultInit -->
